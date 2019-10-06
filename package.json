@@ -5,7 +5,7 @@
   "main": "dijkstra.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd ./src && node dijkstra.js"
+    "start": "cd ./src && node index.js"
   },
   "keywords": [],
   "author": "",
