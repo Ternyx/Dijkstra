@@ -38,18 +38,13 @@ function dijkstra(graphArr, start, end) {
     while (pos !== start) {
         for (let iNode = 0; iNode < graphArr[pos].length; ++iNode) {
             if (iNode !== pos && graphArr[pos][iNode] !== Infinity && sumDist[pos] - graphArr[pos][iNode] === sumDist[iNode]) {
-                // don't compare with itself && check if the nodes are even connected && 
-                // check if the difference between the current node and a nearby node == the sumDist for that specific node
-
-                route.push(iNode); // for start -> end, reverse the array afterwards or just do route.unshift(iNode) (fine for short routes)
-
+                route.push(iNode); 
                 pos = iNode;
                 break;
             }
         }
     }
     route.reverse();
-
     console.log(route);
 }
 
