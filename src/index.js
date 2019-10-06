@@ -1,19 +1,26 @@
 const {readAndParse} = require('./distanceUtilities');
 const dijkstra = require('./dijkstra.js');
 
+const [start, end, maxDistanceBetweenCities] = process.argv.slice(2);
+
 readAndParse('newDistances.txt').then(([cities, distances]) => {
     // MAIN ENTRYPOINT
 
     /*const testRoute = ['Kuldiga', 'Tukums', 'Riga', 'Salaspils', 'Aizkraukle', 'Jekabpils', 'Daugavpils'];
-    testCity(cities, distances, testRoute);*/
+    testCity(cities, distances, testRoute);
 
     findCity(cities, distances, 'Kuldiga', 'Daugavpils');
 
     const [ku, tu] = findCityIndex(cities, ['Kuldiga', 'Tukums']);
     distances[ku][tu] = -1;
-    /*distances[tu][ku] = -1;*/
+    [>distances[tu][ku] = -1;<]
 
-    findCity(cities, distances, 'Kuldiga', 'Daugavpils');
+    findCity(cities, distances, 'Kuldiga', 'Daugavpils');*/
+
+    if (start && end) {
+        findCity(cities, distances, start.trim(), end.trim());
+    }
+    else console.log('Provide a valid start and end city');
 
 }).catch(err => console.log(err));
 
@@ -22,7 +29,7 @@ function findCity(cities, distances, start, end) {
     const endIndex = findCityIndex(cities, end);
 
     const [route, distance] = dijkstra(distances, startIndex, endIndex,
-        iNodeDistance => iNodeDistance === -1 || iNodeDistance > 100);
+        iNodeDistance => iNodeDistance === -1 || iNodeDistance > (parseInt(maxDistanceBetweenCities) || 100));
 
     if (route) {
         const routeToCityNames = route.map(cityIndex => cities[cityIndex]);
