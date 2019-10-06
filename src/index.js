@@ -21,7 +21,8 @@ function findCity(cities, distances, start, end) {
     const startIndex = findCityIndex(cities, start);
     const endIndex = findCityIndex(cities, end);
 
-    const [route, distance] = dijkstra(distances, startIndex, endIndex, iNodeDistance => iNodeDistance === -1 || iNodeDistance > 100);
+    const [route, distance] = dijkstra(distances, startIndex, endIndex,
+        iNodeDistance => iNodeDistance === -1 || iNodeDistance > 100);
 
     if (route) {
         const routeToCityNames = route.map(cityIndex => cities[cityIndex]);

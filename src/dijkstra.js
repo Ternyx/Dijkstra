@@ -41,9 +41,9 @@ module.exports = function dijkstra(graphArr, start, end, additionalCheck) {
 
     while (pos !== start) {
         for (let iNode = 0; iNode < graphArr[pos].length; ++iNode) {
-            if (iNode !== pos && graphArr[pos][iNode] !== Infinity) {
-                if (additionalCheck && additionalCheck(graphArr[pos][iNode])) continue;
-                if (sumDist[pos] - graphArr[pos][iNode] === sumDist[iNode]) {
+            if (iNode !== pos && graphArr[iNode][pos] !== Infinity) {
+                if (additionalCheck && additionalCheck(graphArr[iNode][pos])) continue;
+                if (sumDist[pos] - graphArr[iNode][pos] === sumDist[iNode]) {
                     route.push(iNode); 
                     pos = iNode;
                     break;
