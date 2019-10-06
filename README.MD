@@ -1,1 +1,1 @@
-npm start startCity endCity
+npm start startCity endCity [maxDistBetweenCites]
